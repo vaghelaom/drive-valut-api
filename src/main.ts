@@ -12,7 +12,12 @@ async function bootstrap() {
     new FastifyAdapter(),
   );
 
-  app.useGlobalPipes(new ZodValidationPipe())
+  app.enableCors({
+    origin: 'http://localhost:5500', // wherever your frontend actually runs — adjust the port
+    credentials: true, // REQUIRED — allows cookies to be sent cross-origin
+  });
+
+  app.useGlobalPipes(new ZodValidationPipe());
 
   await app.listen(process.env.PORT ?? 3000);
 }

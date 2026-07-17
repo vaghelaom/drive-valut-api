@@ -25,6 +25,7 @@ model User {
   updatedAt     DateTime  @updatedAt
   sessions      Session[]
   accounts      Account[]
+  todo         Todo[]
   // Add your own relations below this line
   @@map("user")
 }
@@ -68,4 +69,15 @@ model Verification {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   @@map("verification")
+}
+
+model Todo {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  completed   Boolean  @default(false)
+  ownerId     String
+  owner       User     @relation(fields: [ownerId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
