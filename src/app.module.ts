@@ -4,8 +4,6 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { AuthModule } from './auth/auth.module';
-import { TodosService } from './todos/todos.service';
-import { TodosController } from './todos/todos.controller';
 import { TodosModule } from './todos/todos.module';
 
 @Module({
@@ -15,7 +13,7 @@ import { TodosModule } from './todos/todos.module';
     AuthModule,
     TodosModule,
   ],
-  controllers: [AppController, TodosController],
-  providers: [AppService, TodosService],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule {}
